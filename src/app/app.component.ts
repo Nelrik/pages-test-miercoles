@@ -7,7 +7,7 @@ import * as $ from 'jquery';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  title = 'angularApp';
+  title = 'pages-test';
 
   ngOnInit(): void {
     $("header").append("<div class='glitch-window'></div>");
