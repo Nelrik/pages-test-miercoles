@@ -4,6 +4,7 @@ on:
   push:
     branches:
       -main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -23,7 +24,7 @@ jobs:
 
     - name: Build and Deploy
       run: |
-        npm run build --base-href=/pages-test-miercoles/
+        npm run build -- --base-href=/pages-test-miercoles/
         npx angular-cli-ghpages --dir/pages-test-miercoles
       env:
         CI: false
