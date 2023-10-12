@@ -26,6 +26,12 @@ jobs:
 
       - name: Build Angular App
         run: npm run build
+
+      - name: Test cd
+        run: cd ./dist/angular-app
+
+      - name: Test find
+        run: find / -type d -name "angular-app"
         
   deploy:
     runs-on: ubuntu-latest
