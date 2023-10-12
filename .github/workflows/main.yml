@@ -37,4 +37,4 @@ jobs:
       with:
         repository-name: Nelrik/pages-test-miercoles
         branch: gh-pages
-        folder: test/angular-app
+        folder: pages-test-miercoles/pages-test-miercoles/dist/angular-app
