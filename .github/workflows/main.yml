@@ -35,6 +35,5 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        repository-name: Nelrik/pages-test-miercoles
         branch: gh-pages
-        folder: pages-test-miercoles/pages-test-miercoles/dist/angular-app
+        folder: /dist/angular-app
