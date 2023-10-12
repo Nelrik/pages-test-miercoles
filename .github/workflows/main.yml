@@ -3,24 +3,28 @@ name: Deploy to Github Pages
 on:
   push:
     branches:
-      -main
+      - main
   workflow_dispatch:
-
+permissions:
+  contents: write
+  
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
       - name: Install Dependencies
-        run: npm install
+        run: |
+          npm ci
+          npm run build
 
       - name: Build Angular App
         run: npm run build -- --configuration production
@@ -30,7 +34,7 @@ jobs:
     
     steps:
     - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        branch: gh-pages
+        branch: main
         folder: dist/pages-test-miercoles
