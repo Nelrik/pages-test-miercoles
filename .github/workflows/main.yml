@@ -7,24 +7,30 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: action/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Angular App
+        run: npm run build -- --configuration production
+        
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        node-version: 18
-
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Build and Deploy
-      run: |
-        npm run build -- --base-href=/pages-test-miercoles/
-        npx angular-cli-ghpages --dir/pages-test-miercoles
-      env:
-        CI: false
+        branch: gh-pages
+        folder: dist/pages-test-miercoles
